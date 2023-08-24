@@ -1,5 +1,4 @@
 #include "binary_trees.h"
-#include "9-binary_tree_height.c"
 
 /**
  * binary_tree_balance - blance factor of a binary tree
@@ -12,7 +11,6 @@ int binary_tree_balance(const binary_tree_t *tree)
 {
 	int left = 0;
 	int right = 0;
-	int balance = 0;
 
 	if (!tree)
 		return (0);
@@ -20,7 +18,29 @@ int binary_tree_balance(const binary_tree_t *tree)
 	left = binary_tree_height(tree->left);
 	right = binary_tree_height(tree->right);
 
-	balance = left - right;
+	return (left - right);
+}
 
-	return (balance + 1);
+/**
+ * binary_tree_height - height of a binary tree
+ * @tree: binary tree
+ *
+ * Return: 0 if tree NULL
+ */
+
+size_t binary_tree_height(const binary_tree_t *tree)
+{
+	size_t left = 0;
+	size_t right = 0;
+
+	if (!tree)
+		return (0);
+
+	left = binary_tree_height(tree->left);
+	right = binary_tree_height(tree->right);
+
+	if (left > right)
+		return (left + 1);
+
+	return (right + 1);
 }
